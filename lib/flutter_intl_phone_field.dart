@@ -448,23 +448,39 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     filteredCountries = _countryList;
     await showModalBottomSheet(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (ctx, setState) => CountryPickerDialog(
-          dialogPadding: EdgeInsets.zero,
-          languageCode: widget.languageCode,
-          style: widget.pickerDialogStyle,
-          filteredCountries: filteredCountries,
-          searchText: widget.searchText,
-          countryList: _countryList,
-          selectedCountry: _selectedCountry,
-          onCountryChanged: (Country country) {
-            _selectedCountry = country;
-            widget.onCountryChanged?.call(country);
-            setState(() {});
-          },
-        ),
-      ),
+      isScrollControlled: true,
+      builder: (context) {
+        return FractionallySizedBox(
+            heightFactor: widget.pickerDialogStyle?.heightFactor ?? 0.8,
+            child: StatefulBuilder(
+              builder: (ctx, setState) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).canvasColor,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                  ),
+                  child: CountryPickerDialog(
+                    dialogPadding: EdgeInsets.zero,
+                    languageCode: widget.languageCode,
+                    style: widget.pickerDialogStyle,
+                    filteredCountries: filteredCountries,
+                    searchText: widget.searchText,
+                    countryList: _countryList,
+                    selectedCountry: _selectedCountry,
+                    onCountryChanged: (Country country) {
+                      _selectedCountry = country;
+                      widget.onCountryChanged?.call(country);
+                      setState(() {});
+                    },
+                  ),
+                );
+              },
+            ));
+      },
     );
+
     if (mounted) setState(() {});
   }
 

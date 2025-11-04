@@ -58,6 +58,7 @@ class _MyAppState extends State<MyApp> {
                 IntlPhoneField(
                   initialValue: "7012345678",
                   focusNode: focusNode,
+                  dialogType: DialogType.showModalBottomSheet,
                   decoration: const InputDecoration(
                     labelText: 'Phone Number',
                     border: OutlineInputBorder(
