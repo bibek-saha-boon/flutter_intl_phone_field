@@ -64,6 +64,9 @@ class _MyAppState extends State<MyApp> {
                       borderSide: BorderSide(),
                     ),
                   ),
+                  onTapOutside: (_) {
+                    focusNode.unfocus();
+                  },
                   languageCode: "en",
                   onChanged: (phone) {
                     print(phone.completeNumber);

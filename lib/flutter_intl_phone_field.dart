@@ -287,6 +287,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Called when the user submits data.
   final void Function()? onEditingComplete;
 
+  /// Called when the user taps outside.
+  final void Function(PointerDownEvent)? onTapOutside;
+
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
@@ -344,6 +347,7 @@ class IntlPhoneField extends StatefulWidget {
     this.maxLengthEnforcement,
     this.buildCounter,
     this.onEditingComplete,
+    this.onTapOutside,
   }) : super(key: key);
 
   @override
@@ -571,6 +575,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       autofocus: widget.autofocus,
       textInputAction: widget.textInputAction,
       autovalidateMode: widget.autovalidateMode,
+      onTapOutside: widget.onTapOutside,
     );
   }
 
